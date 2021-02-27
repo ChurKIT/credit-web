@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Banks")
+@Table(name = "banks")
 public class Bank {
 
     @Id
@@ -45,6 +45,14 @@ public class Bank {
         }
         creditList.add(credit);
         credit.setBank(this);
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {

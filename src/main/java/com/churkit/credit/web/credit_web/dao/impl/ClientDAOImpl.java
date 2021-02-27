@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class ClientDAOImpl implements ClientDAO {
@@ -17,8 +18,26 @@ public class ClientDAOImpl implements ClientDAO {
 
     @Override
     public List<Client> getAllClients() {
-        Query query = entityManager.createQuery("from Client");
+        Query query = entityManager.createQuery("select c from Client c");
         List<Client> allClients = query.getResultList();
         return allClients;
+    }
+
+    @Override
+    public Client getClient(UUID id){
+        Client client = entityManager.find(Client.class, id);
+        return client;
+    }
+
+    @Override
+    public void saveClient(Client client){
+        entityManager.merge(client);
+    }
+
+    @Override
+    public void deleteClient(UUID id){
+        Query query = entityManager.createQuery("delete from Client where id =:clientId");
+        query.setParameter("clientId", id);
+        query.executeUpdate();
     }
 }

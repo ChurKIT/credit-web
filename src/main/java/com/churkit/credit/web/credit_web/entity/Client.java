@@ -1,12 +1,13 @@
 package com.churkit.credit.web.credit_web.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Clients")
-public class Client {
+@Table(name = "clients")
+public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,6 +46,14 @@ public class Client {
         this.phone = phone;
         this.email = email;
         this.passport = passport;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {

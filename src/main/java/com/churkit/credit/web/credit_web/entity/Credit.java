@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Credits")
+@Table(name = "credits")
 public class Credit {
 
     @Id
