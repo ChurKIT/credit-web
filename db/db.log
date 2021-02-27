@@ -1,0 +1,97 @@
+/*C4*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C5*/SET SCHEMA PUBLIC
+CREATE TABLE banks (\u000a                         id UUID NOT NULL,\u000a                         name VARCHAR(255) NOT NULL,\u000a    PRIMARY KEY (id)\u000a    )
+CREATE TABLE credits (\u000a                           id UUID NOT NULL,\u000a                           limit INT NOT NULL,\u000a                           percent FLOAT NOT NULL,\u000a                           bank_id UUID NOT NULL,\u000a                           PRIMARY KEY (id),\u000a                           FOREIGN KEY (bank_id) REFERENCES banks(id)\u000a    )
+CREATE TABLE schedule_of_payments (\u000a                                       schedule_id UUID NOT NULL,\u000a                                       date_of_payment DATE NOT NULL,\u000a                                       payment_sum INT NOT NULL,\u000a                                       sum_damping_credit INT NOT NULL,\u000a                                       sum_damping_percents INT NOT NULL,\u000a                                       PRIMARY KEY (schedule_id)\u000a    )
+DISCONNECT
+/*C6*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C9*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C8*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C7*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C10*/SET SCHEMA PUBLIC
+set schema PUBLIC
+drop table CREDITS
+drop table BANKS
+drop table SCHEDULE_OF_PAYMENTS
+/*C11*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C12*/SET SCHEMA PUBLIC
+CREATE TABLE banks (\u000a    id UUID NOT NULL,\u000a    name VARCHAR(255) NOT NULL,\u000a    PRIMARY KEY (id)\u000a)
+CREATE TABLE clients (\u000a    id UUID NOT NULL,\u000a    name VARCHAR(255),\u000a    surname VARCHAR(255),\u000a    patronymic VARCHAR(255) NOT NULL,\u000a    phone VARCHAR(255) NOT NULL,\u000a    email VARCHAR(255) NOT NULL,\u000a    passport VARCHAR(255) NOT NULL,\u000a    bank_id UUID NOT NULL,\u000a    PRIMARY KEY (id),\u000a    FOREIGN KEY (bank_id) REFERENCES banks(id)\u000a    )
+CREATE TABLE credits (\u000a    id UUID NOT NULL,\u000a    limit INT NOT NULL,\u000a    percent FLOAT NOT NULL,\u000a    bank_id UUID NOT NULL,\u000a    PRIMARY KEY (id),\u000a    FOREIGN KEY (bank_id) REFERENCES banks(id)\u000a)
+CREATE TABLE schedule_of_payments (\u000a    schedule_id UUID NOT NULL,\u000a    date_of_payment DATE NOT NULL,\u000a    payment_sum INT NOT NULL,\u000a    sum_damping_credit INT NOT NULL,\u000a    sum_damping_percents INT NOT NULL,\u000a    PRIMARY KEY (schedule_id)\u000a)
+CREATE TABLE credit_offers (\u000a    id UUID NOT NULL,\u000a    client_id UUID NOT NULL,\u000a    credit_id UUID NOT NULL,\u000a    credit_sum INT NOT NULL,\u000a    schedule_of_payments UUID NOT NULL,\u000a    PRIMARY KEY (id),\u000a    FOREIGN KEY (client_id) REFERENCES clients(id),\u000a    FOREIGN KEY (credit_id) REFERENCES credits(id),\u000a    FOREIGN KEY (schedule_of_payments) REFERENCES schedule_of_payments(schedule_id)\u000a    )
+DISCONNECT
+/*C13*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C14*/SET SCHEMA PUBLIC
+INSERT INTO BANKS VALUES('1d52c0a1-052b-7f88-cbf1-5afed24a6cbf','Dis Parturient Bank')
+COMMIT
+INSERT INTO BANKS VALUES('7bb6c588-555c-8ee0-20d6-d36f2823f18f','Tellus Limited Bank')
+COMMIT
+DISCONNECT
+/*C15*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C16*/SET SCHEMA PUBLIC
+INSERT INTO CLIENTS VALUES('41ee4d74-6397-2ab8-e0d7-0dc315b3faca','Hermione','Blackwell','Xander','1-304-302-7119','In.mi.pede@ornaretortorat.co.uk','16960318 8955','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('c08f4442-20c3-9e70-b09e-78a52c3f1dd0','Lyle','Riggs','Barrett','1-630-687-4236','netus.et.malesuada@arcueuodio.ca','16941209 1515','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('5e600e35-5102-a13d-ba1b-fb895fd602b1','Travis','Washington','Yardley','1-679-470-9608','a@nascetur.co.uk','16860617 4004','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('272e4706-3e4f-de3b-5a6b-0426535ff874','Abbot','Acevedo','Derek','1-330-466-6929','Maecenas.libero@Duis.net','16341130 2270','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('23411139-30b6-5588-6f59-f8b69636a1e8','Lacey','Kirby','Cadman','1-770-965-3269','felis@mollisPhaselluslibero.ca','16960626 8937','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('9b2470d4-63a9-c5e5-9357-9a2f4a37222d','Jessica','Conway','Erasmus','1-950-154-3395','posuere.at.velit@aliquamarcuAliquam.ca','16621115 4262','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('6d1d2e82-ca99-3556-7e80-51c8e3a3892b','Hilel','Price','Amos','1-357-785-1960','Donec@elitsed.edu','16011204 2726','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('e8975179-9d5b-e52b-e5ee-7ecbaba9a2d4','Illiana','Klein','Denton','1-349-702-3802','eu@famesacturpis.org','16500306 4515','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('e186552e-acfd-3800-3c79-3a03e4bbee37','Mia','Rosa','Guy','1-127-508-7738','mollis.dui.in@ametnullaDonec.net','16681126 8678','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('148b52f0-e57a-6ad6-293d-5b613aea6cb3','Amal','Puckett','Galvin','1-459-237-3474','fringilla.porttitor@bibendum.org','16110729 7473','1d52c0a1-052b-7f88-cbf1-5afed24a6cbf')
+COMMIT
+INSERT INTO CLIENTS VALUES('316c80d3-e168-7641-afc2-bc84e4766f9a','Farrah','Zamora','Caldwell','1-303-208-2094','Aliquam.nec.enim@arcu.org','16160124 1191','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('833c095e-3bdd-61c5-2161-baa29bc029cd','Dieter','Haney','Sawyer','1-461-438-3751','eleifend@vitaealiquameros.org','16790230 2525','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('ce63cd5d-700a-acb7-fb70-77e2292777fc','Rooney','Estrada','Odysseus','1-976-106-3069','feugiat.nec.diam@pulvinararcuet.co.uk','16700626 2187','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('ff4637f0-4bcd-7772-b0f9-ef6fa51649b7','Shad','Hopper','Paul','1-873-631-4871','lorem@a.com','16140724 7095','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('9060ad28-fcda-ee16-67ba-468f8f0e49b3','Demetria','Carrillo','Myles','1-348-922-7559','augue.id.ante@nuncsit.org','16540511 3928','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('fd72079e-642c-a55d-dc66-05f2757db47d','Fuller','Albert','Reece','1-133-522-5724','lacus@idnunc.com','16591108 2419','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('78bc045c-effb-8212-8e15-6608b3d1c97d','Winifred','Compton','Vincent','1-248-999-1232','risus.at.fringilla@rutrumeuultrices.org','16070921 7335','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('41305550-31d3-e4c0-fb3d-cb44c5b05537','Desiree','Strickland','Abel','1-816-187-5476','accumsan.convallis.ante@cursusin.edu','16461217 7693','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('4bb6c1f2-a89d-f535-6b57-938833b9ed48','Brendan','Orr','Castor','1-189-267-3314','egestas.a.dui@bibendumsed.edu','16890816 1964','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+INSERT INTO CLIENTS VALUES('95adaf14-84bb-2c42-5772-6eafa7dc635a','Christopher','Workman','Kaseem','1-664-734-2315','Aliquam.erat.volutpat@commodo.ca','16481205 1185','7bb6c588-555c-8ee0-20d6-d36f2823f18f')
+COMMIT
+DISCONNECT
+/*C17*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C18*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C19*/SET SCHEMA PUBLIC
+set schema PUBLIC
+/*C21*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C20*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C22*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C23*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C10*/DISCONNECT
+/*C19*/DISCONNECT

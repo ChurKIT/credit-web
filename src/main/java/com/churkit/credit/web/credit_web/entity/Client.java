@@ -7,10 +7,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "clients")
-public class Client implements Serializable {
+public class Client implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private UUID id;
 
