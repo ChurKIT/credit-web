@@ -11,7 +11,7 @@ import java.util.UUID;
 public class Bank implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private UUID id;
 
@@ -19,10 +19,10 @@ public class Bank implements Serializable {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bank")
-    private List<Credit> creditList;
+    private transient List<Credit> creditList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bank")
-    private List<Client> clientList;
+    private transient List<Client> clientList;
 
 
     public Bank() {

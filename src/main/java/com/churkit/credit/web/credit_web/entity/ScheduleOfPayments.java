@@ -1,12 +1,13 @@
 package com.churkit.credit.web.credit_web.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(name = "schedule_of_payments")
-public class ScheduleOfPayments {
+public class ScheduleOfPayments implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,6 +15,7 @@ public class ScheduleOfPayments {
     private UUID id;
 
     @Column(name = "date_of_payment")
+    @Temporal(TemporalType.DATE)
     private Date dateOfPayment;
 
     @Column(name = "payment_sum")
@@ -33,6 +35,14 @@ public class ScheduleOfPayments {
         this.paymentSum = paymentSum;
         this.sumDampingCredit = sumDampingCredit;
         this.sumDampingPercents = sumDampingPercents;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public Date getDateOfPayment() {

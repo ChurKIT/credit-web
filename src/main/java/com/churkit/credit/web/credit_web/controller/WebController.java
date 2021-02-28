@@ -3,6 +3,7 @@ package com.churkit.credit.web.credit_web.controller;
 import com.churkit.credit.web.credit_web.entity.Client;
 import com.churkit.credit.web.credit_web.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
-public class Controller {
+public class WebController {
 
     @Autowired
     private ClientService clientService;

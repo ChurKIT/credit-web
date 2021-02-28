@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Client implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private UUID id;
 
