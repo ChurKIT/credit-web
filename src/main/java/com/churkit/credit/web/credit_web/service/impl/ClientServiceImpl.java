@@ -1,6 +1,6 @@
 package com.churkit.credit.web.credit_web.service.impl;
 
-import com.churkit.credit.web.credit_web.dao.ClientRepository;
+import com.churkit.credit.web.credit_web.repo.ClientRepository;
 import com.churkit.credit.web.credit_web.entity.Client;
 import com.churkit.credit.web.credit_web.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
