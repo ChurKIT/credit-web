@@ -32,7 +32,7 @@ public class Client implements Serializable{
     @Column(name = "passport")
     private String passport;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "bank_id")
     private Bank bank;
 

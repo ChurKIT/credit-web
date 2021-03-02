@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,15 +32,13 @@ public class ClientController {
         return "add-client";
     }
 
-    //TODO add @Valid dependency to Client
     @PostMapping("/addClient")
-    public String addUser(Client client, BindingResult result, Model model) {
+    public String addUser(@Valid Client client, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-user";
+            return "add-client";
         }
-        //TODO repair index.html
         clientService.saveClient(client);
-        return "redirect:/allClients";
+        return "redirect:/index.html";
     }
 
     @GetMapping("/edit/{id}")
@@ -49,24 +48,20 @@ public class ClientController {
         return "update-client";
     }
 
-    //TODO add @Valid dependency to Client
-    @PostMapping("/update/{id}")
-    public String updateClient(@PathVariable("id") UUID id, Client client,
+    @PostMapping("/edit/update/{id}")
+    public String updateClient(@PathVariable("id") UUID id, @Valid Client client,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
-            client.setId(id);
-            return "update-user";
+            return "update-client";
         }
-        //TODO repair index.html
         clientService.saveClient(client);
-        return "redirect:/allClients";
+        return "redirect:/index.html";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteClient(@PathVariable("id") UUID id, Model model) {
         clientService.deleteClient(id);
-        //TODO repair index.html
-        return "redirect:/allClients";
+        return "redirect:/index.html";
     }
 
 //    @GetMapping("/client/{id}")

@@ -23,7 +23,7 @@ CREATE TABLE credits (
     percent FLOAT,
     bank_id UUID,
     PRIMARY KEY (id),
-    FOREIGN KEY (bank_id) REFERENCES banks(id)
+    FOREIGN KEY (bank_id) REFERENCES banks(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE schedule_of_payments (
@@ -42,9 +42,9 @@ CREATE TABLE credit_offers (
     credit_sum INT,
     schedule_of_payments UUID,
     PRIMARY KEY (id),
-    FOREIGN KEY (client_id) REFERENCES clients(id),
+    FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (credit_id) REFERENCES credits(id),
-    FOREIGN KEY (schedule_of_payments) REFERENCES schedule_of_payments(schedule_id)
+    FOREIGN KEY (schedule_of_payments) REFERENCES schedule_of_payments(schedule_id) ON DELETE CASCADE ON UPDATE CASCADE
     );
 
 
