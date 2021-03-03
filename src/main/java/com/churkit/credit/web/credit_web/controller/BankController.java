@@ -3,6 +3,7 @@ package com.churkit.credit.web.credit_web.controller;
 
 import com.churkit.credit.web.credit_web.entity.Bank;
 import com.churkit.credit.web.credit_web.entity.Client;
+import com.churkit.credit.web.credit_web.entity.Credit;
 import com.churkit.credit.web.credit_web.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,5 +55,17 @@ public class BankController {
         return "redirect:/index.html";
     }
 
+    @GetMapping("/viewClientList/{id}")
+    public String viewClientList(@PathVariable("id") UUID id, Model model ) {
+        List<Client> clientList = bankService.getBank(id).getClientList();
+        model.addAttribute("clientsList", clientList);
+        return "bank-clients";
+    }
 
+    @GetMapping("/viewCreditList/{id}")
+    public String viewCreditList(@PathVariable("id") UUID id, Model model ) {
+        List<Credit> creditList = bankService.getBank(id).getCreditList();
+        model.addAttribute("creditsList", creditList);
+        return "bank-credits";
+    }
 }

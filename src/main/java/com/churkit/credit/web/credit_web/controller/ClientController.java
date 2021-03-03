@@ -1,6 +1,7 @@
 package com.churkit.credit.web.credit_web.controller;
 
 import com.churkit.credit.web.credit_web.entity.Client;
+import com.churkit.credit.web.credit_web.service.BankService;
 import com.churkit.credit.web.credit_web.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private BankService bankService;
+
     @GetMapping("/allClients")
     public String showAllClients(Model model){
         List<Client> allClients = clientService.getAllClients();
@@ -28,7 +32,10 @@ public class ClientController {
     }
 
     @GetMapping("/clientAddForm")
-    public String showAddingForm(Client client) {
+
+    public String showAddingForm(Client client, Model model) {
+        model.addAttribute("client", client);
+        model.addAttribute("allBanks", bankService.getAllBanks());
         return "add-client";
     }
 

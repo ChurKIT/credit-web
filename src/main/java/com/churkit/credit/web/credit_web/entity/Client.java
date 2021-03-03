@@ -37,15 +37,18 @@ public class Client implements Serializable{
     private Bank bank;
 
     public Client() {
+
     }
 
-    public Client(String name, String surname, String patronymic, String phone, String email, String passport) {
+    public Client(String name, String surname, String patronymic, String phone, String email, String passport, Bank bank) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.phone = phone;
         this.email = email;
         this.passport = passport;
+        this.bank = bank;
+        this.bank.addClientToBank(this);
     }
 
     public UUID getId() {

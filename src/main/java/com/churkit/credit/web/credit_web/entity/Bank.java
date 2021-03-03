@@ -19,10 +19,10 @@ public class Bank implements Serializable {
     private String name;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "bank")
-    private transient List<Credit> creditList;
+    private List<Credit> creditList;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "bank")
-    private transient List<Client> clientList;
+    private List<Client> clientList;
 
 
     public Bank() {

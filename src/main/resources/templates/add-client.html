@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -26,6 +26,12 @@
     <label for="passport">Passport</label>
     <input type="text" th:field="*{passport}" id="passport" placeholder="Passport">
     <span th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}"></span>
+    <div class="input-group mb-3" >
+        <label class="input-group-text" for="input-bank">Bank</label>
+        <select class="form-select" id="input-bank">
+            <option th:each="bank : ${allBanks}" value="${bank}"></option>
+        </select>
+    </div>
     <input type="submit" value="Add Client">
 </form>
 </body>

@@ -14,7 +14,7 @@ CREATE TABLE clients (
     passport VARCHAR(255),
     bank_id UUID,
     PRIMARY KEY (id),
-    FOREIGN KEY (bank_id) REFERENCES banks(id)
+    FOREIGN KEY (bank_id) REFERENCES banks(id) ON DELETE SET NULL
     );
 
 CREATE TABLE credits (
@@ -43,7 +43,7 @@ CREATE TABLE credit_offers (
     schedule_of_payments UUID,
     PRIMARY KEY (id),
     FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (credit_id) REFERENCES credits(id),
+    FOREIGN KEY (credit_id) REFERENCES credits(id) ON DELETE CASCADE ON UPDATE CASCADE ,
     FOREIGN KEY (schedule_of_payments) REFERENCES schedule_of_payments(schedule_id) ON DELETE CASCADE ON UPDATE CASCADE
     );
 

@@ -36,6 +36,18 @@ public class Credit {
         this.bank = bank;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setPercent(double percent) {
+        this.percent = percent;
+    }
+
     public int getLimit() {
         return limit;
     }

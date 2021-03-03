@@ -17,6 +17,9 @@
     <tbody>
     <tr th:each="bank : ${allBanks}">
         <td th:text="${bank.name}"></td>
+        <td><a th:href="@{viewClientList/{id}(id=${bank.id})}">Clients</a></td>
+        <td><a th:href="@{viewCreditList/{id}(id=${bank.id})}">Credits</a></td>
+        <td><a th:href="@{delete/{id}(id=${bank.id})}">Delete</a></td>
     </tr>
     </tbody>
 </table>
