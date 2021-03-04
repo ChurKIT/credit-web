@@ -14,7 +14,7 @@ CREATE TABLE clients (
     passport VARCHAR(255),
     bank_id UUID,
     PRIMARY KEY (id),
-    FOREIGN KEY (bank_id) REFERENCES banks(id) ON DELETE SET NULL
+    FOREIGN KEY (bank_id) REFERENCES banks(id) ON DELETE CASCADE ON UPDATE CASCADE
     );
 
 CREATE TABLE credits (

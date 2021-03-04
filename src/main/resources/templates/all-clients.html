@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>All Clients</title>
@@ -45,6 +45,7 @@
                 <th scope="col">Phone</th>
                 <th scope="col">Email</th>
                 <th scope="col">Passport</th>
+                <th scope="col">Bank</th>
             </tr>
             </thead>
             <tbody>
@@ -56,6 +57,7 @@
                 <td th:text="${client.phone}"></td>
                 <td th:text="${client.email}"></td>
                 <td th:text="${client.passport}"></td>
+                <td th:text="${client.bank.name}"></td>
                 <td><a th:href="@{edit/{id}(id=${client.id})}">Edit</a></td>
                 <td><a th:href="@{delete/{id}(id=${client.id})}">Delete</a></td>
             </tr>
